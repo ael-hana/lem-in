@@ -82,20 +82,15 @@ t_lem_in		*ft_creat_map_lem(char **tab, char **name)
 		if (!ft_strcmp("##start", tab[i]))
 		{
 			++i;
-			ft_printf("start %s\n", name[osef]);
 			ptr = ft_init_t_lem_in(name[osef], ptr , 1, nb_handes);
 		}
 		else if (!ft_strcmp("##end", tab[i]))
 		{
 			++i;
-			ft_printf("end %s\n", name[osef]);
 			ptr = ft_init_t_lem_in(name[osef], ptr , 2, 0);
 		}
 		else
-		{
-			ft_printf("osef %s\n", name[osef]);
 			ptr = ft_init_t_lem_in(name[osef], ptr , 0, 0);
-		}
 		++osef;
 		++i;
 	}
@@ -112,6 +107,34 @@ void		ft_print_list_lem(t_lem_in *ptr)
 	}
 }
 
+t_lem_in	*find_list(t_lem_in *ptr, char *name)
+{
+	while (ptr && ft_strcmp(ptr->name, name))
+		ptr = ptr->next;
+	return (ptr);
+}
+
+t_lem_in	**ft_realloc_tab(size_t size, t_lem_in **old, void *add)
+{
+	t_lem_in		**tmp;
+	unsigned int	i;
+
+	if (!(tmp = malloc(sizeof(t_lem_in) * (size + 1))))
+		ft_error_lem_in();
+	i = 0;
+	while (i < (size - 1))
+		tmp[i] = old[i++];
+	tmp[i++] = add;
+	tmp[i] = NULL;
+	free(old);
+	return (tmp);
+}
+
+void		ft_creat_way_lem_in(t_lem_in *ptr, char **tab)
+{
+	while ()
+}
+
 int		main(void)
 {
 	char	**tab;
@@ -123,6 +146,9 @@ int		main(void)
 	ptr = ft_creat_map_lem(tab, ft_strsplit(check_buf(tab), '|'));
 	while (*tab)
 		ft_printf("line %d : %s\n", i++, *tab++);
+	while (!ft_strchr(*tab, '-'))
+		(*tab)++;
+	ft_creat_way_lem_in(ptr, tab);
 	ft_print_list_lem(ptr);
 	return (0);
 }
