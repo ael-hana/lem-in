@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 00:45:43 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/01/28 06:26:35 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/02/01 19:06:20 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 typedef struct		s_lem_in
 {
 	char			*name;
+	unsigned int	nw;
 	int				n_hans;
 	short			starttoend;
 	int				n_way;
@@ -26,4 +27,7 @@ typedef struct		s_lem_in
 }					t_lem_in;
 void				*check_buf(char **tab);
 char				*ft_check_line(char *str);
+void				ft_creat_way_lem_in(t_lem_in *ptr, char **tab, int i);
 void				ft_error_lem_in(void);
+t_lem_in			*ft_creat_map_lem(char **tab, char **name);
+int					ft_return_digit(char *str);
