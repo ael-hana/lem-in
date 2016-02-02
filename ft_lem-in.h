@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 00:45:43 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/02/01 19:06:20 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/02/02 03:15:46 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ typedef struct		s_lem_in
 	char			*name;
 	unsigned int	nw;
 	int				n_hans;
+	short			vld;
 	short			starttoend;
 	int				n_way;
 	struct s_lem_in	**way;

@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 00:38:31 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/02/01 19:43:17 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/02/02 04:10:54 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ void		ft_print_list_lem(t_lem_in *ptr)
 {
 	while (ptr)
 	{
-		ft_printf("My ptr : %p name : %s, nombre de fourmis %d, starttoend %d, n_way %d, way %p, nw : %d\n,",
-				ptr, ptr->name,		ptr->n_hans,	ptr->starttoend, ptr->n_way, ptr->way[0], ptr->nw);
+		ft_printf("My ptr : %p name : %s, nombre de fourmis %d, starttoend %d, n_way %d, way %p, nw : %d, vld : %d\n",
+				ptr, ptr->name,		ptr->n_hans,	ptr->starttoend, ptr->n_way, ptr->way[0], ptr->nw, ptr->vld);
 		ptr = ptr->next;
 	}
 }
@@ -49,21 +49,67 @@ void		ft_print_list_lem(t_lem_in *ptr)
 void		ft_backtrack(t_lem_in *ptr)
 {
 	int			i;
+	char		ok;
 	t_lem_in	*tmp;
 
 	i = 0;
-
+	ok = 1;
 	while (ptr->n_way > i)
 	{
 		tmp = ptr->way[i++];
-		if (tmp->nw >= ptr->nw || (!tmp->nw && tmp->starttoend != 1))
+		if (tmp->starttoend == 2)
+			ok = 0;
+		if (tmp->nw > ptr->nw + 1 || (tmp->nw == 0 && tmp->starttoend != 1))
 		{
+			ok = 0;
 			tmp->nw = ptr->nw + 1;
 			if (tmp->starttoend != 2)
 				ft_backtrack(tmp);
 		}
+		else if (ok && ptr->n_way == i)
+			ptr->nw = 0;
 	}
 }
+
+void		ft_return_name(t_lem_in *ptr)
+{
+	int			i;
+	char		ok;
+	t_lem_in	*tmp;
+
+	i = 0;
+	ok = 1;
+	while (ptr->n_way > i)
+	{
+		tmp = ptr->way[i++];
+		if (tmp->starttoend == 2)
+			ok = 0;
+		else if (tmp->nw - 1 == ptr->nw)
+		{
+			ok = 0;
+			ft_backtrack(tmp);
+		}
+		else if (ok && ptr->n_way == i)
+			ptr->nw = 0;
+	}
+}
+
+char		**ft_path_finding(t_lem_in *ptr, char **tab, int i)
+{
+	int		x;
+	t_lem_in	*tmp;
+
+	x = 0;
+	if (!tab && !(tab = malloc(sizeof(char *) * (ptr->n_way + 1))))
+		ft_error_lem_in();
+	while (ptr && ptr->starttoend != 2)
+		ptr = ptr->next;
+	ft_printf("merde\n");
+	if (ptr)
+		ft_return_name(ptr);
+	return (NULL);
+}
+
 int		main(void)
 {
 	char		**tab;
@@ -87,6 +133,8 @@ int		main(void)
 	while (ptr->starttoend != 1)
 		ptr = ptr->next;
 	ft_backtrack(ptr);
+	//ft_path_finding(save, NULL, 0);
+	//ft_return_name(ptr);
 	ft_print_list_lem(save);
 	return (0);
 }
