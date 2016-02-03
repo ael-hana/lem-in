@@ -17,10 +17,8 @@ char	**ft_read_stdin(void)
 	char	*str;
 	char	*new;
 	char	*tmp;
-	int		i;
 	int		len;
 
-	i = 1;
 	new = ft_strdup("\0");
 	if (!(str = malloc(sizeof(char) * 11)))
 		ft_error_lem_in();
@@ -46,7 +44,7 @@ void		ft_print_list_lem(t_lem_in *ptr)
 	}
 }
 
-void		ft_backtrack(t_lem_in *ptr)
+char	ft_backtrack(t_lem_in *ptr)
 {
 	int			i;
 	char		ok;
@@ -58,42 +56,59 @@ void		ft_backtrack(t_lem_in *ptr)
 	{
 		tmp = ptr->way[i++];
 		if (tmp->starttoend == 2)
-			ok = 0;
+		{
+			tmp->nw = -1;
+			return (0);
+		}
 		if (tmp->nw > ptr->nw + 1 || (tmp->nw == 0 && tmp->starttoend != 1))
 		{
-			ok = 0;
 			tmp->nw = ptr->nw + 1;
 			if (tmp->starttoend != 2)
-				ft_backtrack(tmp);
+				ok = ft_backtrack(tmp);
 		}
 		else if (ok && ptr->n_way == i)
 			ptr->nw = 0;
 	}
+	return (ok);
 }
 
-void		ft_return_name(t_lem_in *ptr)
+int		ft_size_to_end(t_lem_in *ptr)
 {
-	int			i;
-	char		ok;
 	t_lem_in	*tmp;
+	int			i;
 
 	i = 0;
-	ok = 1;
+	while (42)
+	{
+		tmp = ptr->way[i++];
+		ft_putendl(tmp->name);
+		if (tmp->starttoend == 1);
+		else if (tmp->starttoend == 2)
+			return (1);
+		else if (tmp->nw -1 == ptr->nw)
+			return (ft_size_to_end(tmp) + 1);
+	}
+}
+
+void	ft_len_way(t_lem_in *ptr)
+{
+	int			i;
+	t_lem_in	*tmp;
+
+	ft_putendl(ptr->name);
+	ft_putstr("\n\n\n");
+	i = 0;
 	while (ptr->n_way > i)
 	{
 		tmp = ptr->way[i++];
-		if (tmp->starttoend == 2)
-			ok = 0;
-		else if (tmp->nw - 1 == ptr->nw)
-		{
-			ok = 0;
-			ft_backtrack(tmp);
-		}
-		else if (ok && ptr->n_way == i)
-			ptr->nw = 0;
+		ft_putstr("\n\n\n");
+		ft_putendl(tmp->name);
+		tmp->vld = ft_size_to_end(tmp);
+		ft_putstr("\n\n\n");
 	}
 }
 
+/*
 char		**ft_path_finding(t_lem_in *ptr, char **tab, int i)
 {
 	int		x;
@@ -109,11 +124,12 @@ char		**ft_path_finding(t_lem_in *ptr, char **tab, int i)
 		ft_return_name(ptr);
 	return (NULL);
 }
-
+*/
 int		main(void)
 {
 	char		**tab;
 	t_lem_in	*ptr;
+	char		*str;
 	void		*save;
 	char		**tmp;
 	int			i;
@@ -134,7 +150,7 @@ int		main(void)
 		ptr = ptr->next;
 	ft_backtrack(ptr);
 	//ft_path_finding(save, NULL, 0);
-	//ft_return_name(ptr);
+	ft_len_way(ptr);
 	ft_print_list_lem(save);
 	return (0);
 }
