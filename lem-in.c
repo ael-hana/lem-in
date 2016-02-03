@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 00:38:31 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/02/02 04:19:54 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/02/03 23:52:31 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,87 +44,38 @@ void		ft_print_list_lem(t_lem_in *ptr)
 	}
 }
 
-char	ft_backtrack(t_lem_in *ptr)
+void		ft_select_branch(t_lem_in *ptr, t_lem_in **tab)
 {
-	int			i;
-	char		ok;
-	t_lem_in	*tmp;
-
-	i = 0;
-	ok = 1;
-	while (ptr->n_way > i)
-	{
-		tmp = ptr->way[i++];
-		if (tmp->starttoend == 2)
-		{
-			tmp->nw = -1;
-			return (0);
-		}
-		if (tmp->nw > ptr->nw + 1 || (tmp->nw == 0 && tmp->starttoend != 1))
-		{
-			tmp->nw = ptr->nw + 1;
-			if (tmp->starttoend != 2)
-				ok = ft_backtrack(tmp);
-		}
-		else if (ok && ptr->n_way == i)
-			ptr->nw = 0;
-	}
-	return (ok);
+	
 }
 
-int		ft_size_to_end(t_lem_in *ptr)
+void		ft_path_finding(t_lem_in *ptr)
 {
-	t_lem_in	*tmp;
-	int			i;
+	int		i;
+	void	*tmp;
+	t_lem_in	*tab_sort[ptr->n_way];
 
-	i = 0;
-	while (42)
-	{
-		tmp = ptr->way[i++];
-		ft_putendl(tmp->name);
-		if (tmp->starttoend == 1);
-		else if (tmp->starttoend == 2)
-			return (1);
-		else if (tmp->nw -1 == ptr->nw)
-			return (ft_size_to_end(tmp) + 1);
-	}
-}
-
-void	ft_len_way(t_lem_in *ptr)
-{
-	int			i;
-	t_lem_in	*tmp;
-
-	ft_putendl(ptr->name);
-	ft_putstr("\n\n\n");
 	i = 0;
 	while (ptr->n_way > i)
 	{
-		tmp = ptr->way[i++];
-		ft_putstr("\n\n\n");
-		ft_putendl(tmp->name);
-		tmp->vld = ft_size_to_end(tmp);
-		ft_putstr("\n\n\n");
+		tab_sort[i] = ptr->way[i];
+		++i;
+	}
+	i = 0;
+	while (ptr->n_way > (i + 1))
+	{
+		if (tab_sort[i] > tab_sort[i + 1])
+		{
+			tmp = tab_sort[i];
+			tab_sort[i] = tab_sort[i + 1];
+			tab_sort[i + 1] = tmp;
+			i = 0;
+		}
+		else
+			++i;
 	}
 }
 
-/*
-char		**ft_path_finding(t_lem_in *ptr, char **tab, int i)
-{
-	int		x;
-	t_lem_in	*tmp;
-
-	x = 0;
-	if (!tab && !(tab = malloc(sizeof(char *) * (ptr->n_way + 1))))
-		ft_error_lem_in();
-	while (ptr && ptr->starttoend != 2)
-		ptr = ptr->next;
-	ft_printf("merde\n");
-	if (ptr)
-		ft_return_name(ptr);
-	return (NULL);
-}
-*/
 int		main(void)
 {
 	char		**tab;

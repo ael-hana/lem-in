@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 00:45:43 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/02/02 03:15:46 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/02/03 23:52:33 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,6 @@ char				*ft_check_line(char *str);
 void				ft_creat_way_lem_in(t_lem_in *ptr, char **tab, int i);
 void				ft_error_lem_in(void);
 t_lem_in			*ft_creat_map_lem(char **tab, char **name);
+char				ft_backtrack(t_lem_in *ptr);
+void				ft_len_way(t_lem_in *ptr);
 int					ft_return_digit(char *str);
