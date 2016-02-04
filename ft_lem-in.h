@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 00:45:43 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/02/03 23:52:33 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/02/04 08:39:46 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct		s_lem_in
 	int				n_hans;
 	short			vld;
 	short			starttoend;
+	int				*old_val;
 	int				n_way;
 	struct s_lem_in	**way;
 	struct s_lem_in	*next;
