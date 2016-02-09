@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 00:38:31 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/02/04 08:39:44 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/02/09 05:47:37 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ char	**ft_read_stdin(void)
 	char	*tmp;
 	int		len;
 
-	new = ft_strdup("\0");
+	if (!(new = ft_strdup("\0")))
+		ft_error_lem_in();
 	if (!(str = malloc(sizeof(char) * 11)))
 		ft_error_lem_in();
 	while ((len = read(0, str, 10)) != -1)
@@ -71,7 +72,7 @@ void		ft_run_hans(t_lem_in *ptr, int num)
 	}
 }
 
-void		ft_print_pos(t_lem_in *ptr)
+void		ft_print_pos(t_lem_in *ptr, int remove)
 {
 	int	i;
 
@@ -80,9 +81,16 @@ void		ft_print_pos(t_lem_in *ptr)
 	{
 		while (ptr->old_val[i] != -42)
 		{
+			if (remove == ptr->old_val[i])
+			{
+				ft_printf("L%d-%s ", ptr->old_val[i], ptr->name);
+				ptr->old_val[i] = 0;
+			}
 			if (ptr->old_val[i])
 				ft_printf("L%d-%s ", ptr->old_val[i], ptr->name);
-			ptr->old_val[i++] = 0;
+			if (remove != ptr->old_val[i])
+				ptr->old_val[i] = 0;
+			++i;
 		}
 		return ;
 	}
@@ -90,22 +98,41 @@ void		ft_print_pos(t_lem_in *ptr)
 	{
 		if (ptr->way[i]->nw == (ptr->nw + 1) || ptr->way[i]->starttoend == 2)
 		{
-			ft_print_pos(ptr->way[i]);
+			ft_print_pos(ptr->way[i], remove);
 			if (!ptr->starttoend && ptr->n_hans)
 				ft_printf("L%d-%s ", ptr->n_hans, ptr->name);
-			if (!ft_strcmp(ptr->name, "3"))
-				ft_printf("name : %s, ptr : %p\n", ptr->way[i]->name, ptr->way[i]);
+		//	if (!ft_strcmp(ptr->name, "3"))
+		//		ft_printf("name : %s, ptr : %p\n", ptr->way[i]->name, ptr->way[i]);
 		}
 		++i;
 	}
 }
 
+short		ft_search_val(int *tab, int s, t_lem_in *ptr)
+{
+	unsigned int	i;
+	short			ok;
+
+	i = 0;
+	while (tab[i] != -42 && tab[i] != s)
+		++i;
+	ok = 0;
+	while (ptr)
+	{
+		ok = !ptr->starttoend && ptr->n_hans ? 1 : ok;
+		ptr = ptr->next;
+	}
+	return (tab[i] == -42 && ok ? 1 : 0);
+}
+
 void		ft_select_branch(t_lem_in *ptr, t_lem_in **tab, t_lem_in *list)
 {
 	int		i;
+	void	*osef;
 	int		oklm;
 
 	oklm = 0;
+	osef = list;
 	while (list->starttoend != 2)
 		list = list->next;
 	if (!(list->old_val = (int *)malloc(sizeof(int) * (ptr->n_way + 1))))
@@ -116,7 +143,7 @@ void		ft_select_branch(t_lem_in *ptr, t_lem_in **tab, t_lem_in *list)
 	oklm = 1;
 	i = ptr->n_way - 1;
 	ptr->way = tab;
-	while (list->old_val[0] != ptr->n_hans && list->old_val[1] != ptr->n_hans)
+	while (ft_search_val(list->old_val, ptr->n_hans, osef) || oklm == 1)
 	{
 		if ((tab[i]->vld <= (ptr->nw - oklm) || i == 0) && oklm <= ptr->n_hans)
 			ft_run_hans(tab[i], oklm++);
@@ -125,11 +152,11 @@ void		ft_select_branch(t_lem_in *ptr, t_lem_in **tab, t_lem_in *list)
 		if (--i < 0)
 		{
 			i = ptr->n_way - 1;
-			ft_print_pos(ptr);
+			ft_print_pos(ptr, ptr->n_hans);
 			write(1, "\n", 1);
 		}
 	}
-	ft_print_pos(ptr);
+	ft_print_pos(ptr, ptr->n_hans);
 	write(1, "\n", 1);
 }
 
@@ -154,8 +181,8 @@ void		ft_path_finding(t_lem_in *ptr, t_lem_in *save)
 	i = 0;
 	while (ptr->n_way > (i + 1))
 	{
-		if (tab_sort[i]->vld > tab_sort[i + 1]->vld &&
-					!tab_sort[i + 1]->starttoend && !tab_sort[i]->starttoend)
+		if ((tab_sort[i]->vld > tab_sort[i + 1]->vld) &&
+					!(tab_sort[i + 1]->starttoend) && !(tab_sort[i]->starttoend))
 		{
 			tmp = tab_sort[i];
 			tab_sort[i] = tab_sort[i + 1];
@@ -172,7 +199,6 @@ int		main(void)
 {
 	char		**tab;
 	t_lem_in	*ptr;
-	char		*str;
 	void		*save;
 	char		**tmp;
 	int			i;
@@ -196,5 +222,6 @@ int		main(void)
 	ft_len_way(ptr);
 	ft_print_list_lem(save);
 	ft_path_finding(ptr, save);
+	dprintf(1, "lol");
 	return (0);
 }
