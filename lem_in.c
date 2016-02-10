@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 00:38:31 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/02/10 09:21:57 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/02/10 10:09:51 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ char			**ft_read_stdin(void)
 		new = ft_strjoin(new, str);
 		free(tmp);
 	}
-	ft_error();
+	ft_error_lem_in();
 	return (NULL);
 }
 
