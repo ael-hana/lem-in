@@ -6,13 +6,13 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 00:38:47 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/02/04 08:39:47 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/02/10 08:14:25 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_lem-in.h"
+#include "ft_lemin.h"
 
-void	ft_error_lem_in(void)
+void		ft_error_lem_in(void)
 {
 	ft_printf("ERROR");
 	exit(EXIT_FAILURE);
@@ -31,11 +31,13 @@ char		*ft_check_line(char *str)
 	if (len != 3)
 		ft_error_lem_in();
 	i = 0;
-	while (tab[1][i] && ft_isdigit(tab[1][i++]));
+	while (tab[1][i] && ft_isdigit(tab[1][i]))
+		++i;
 	if (tab[1][i])
 		ft_error_lem_in();
 	i = 0;
-	while (tab[2][i] && ft_isdigit(tab[2][i++]));
+	while (tab[2][i] && ft_isdigit(tab[2][i]))
+		++i;
 	if (tab[2][i])
 		ft_error_lem_in();
 	return (ft_strjoin(tab[0], "|"));
@@ -72,7 +74,8 @@ int			ft_return_digit(char *str)
 	int		i;
 
 	i = 0;
-	while (str[i] && ft_isdigit(str[i++]));
+	while (str[i] && ft_isdigit(str[i]))
+		++i;
 	if (str[i])
 		ft_error_lem_in();
 	if ((i = ft_atoi(str)))

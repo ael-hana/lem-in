@@ -6,13 +6,13 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 18:57:15 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/02/04 07:23:19 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/02/10 09:21:59 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_lem-in.h"
+#include "ft_lemin.h"
 
-t_lem_in	*ft_init_t_lem_in(char *name, void *next, short std, int hans)
+t_lem_in		*ft_init_t_lem_in(char *name, void *next, short std, int hans)
 {
 	t_lem_in	*ptr;
 
@@ -27,7 +27,7 @@ t_lem_in	*ft_init_t_lem_in(char *name, void *next, short std, int hans)
 	ptr->n_way = 0;
 	ptr->way = NULL;
 	return (ptr);
-	}
+}
 
 t_lem_in		*ft_creat_map_lem(char **tab, char **name)
 {
@@ -46,32 +46,26 @@ t_lem_in		*ft_creat_map_lem(char **tab, char **name)
 	{
 		while (tab[i][0] == '#' && tab[i][1] != '#')
 			++i;
-		if (!ft_strcmp("##start", tab[i]))
-		{
-			++i;
-			ptr = ft_init_t_lem_in(name[osef], ptr , 1, nb_handes);
-		}
-		else if (!ft_strcmp("##end", tab[i]))
-		{
-			++i;
-			ptr = ft_init_t_lem_in(name[osef], ptr , 2, 0);
-		}
+		if (!ft_strcmp("##start", tab[i]) && ++i)
+			ptr = ft_init_t_lem_in(name[osef], ptr, 1, nb_handes);
+		else if (!ft_strcmp("##end", tab[i]) && ++i)
+			ptr = ft_init_t_lem_in(name[osef], ptr, 2, 0);
 		else
-			ptr = ft_init_t_lem_in(name[osef], ptr , 0, 0);
+			ptr = ft_init_t_lem_in(name[osef], ptr, 0, 0);
 		++osef;
 		++i;
 	}
 	return (ptr);
 }
 
-t_lem_in	*find_list(t_lem_in *ptr, char *name)
+t_lem_in		*find_list(t_lem_in *ptr, char *name)
 {
 	while (ptr && ft_strcmp(ptr->name, name))
 		ptr = ptr->next;
 	return (ptr);
 }
 
-void		ft_realloc_tab(size_t size, t_lem_in *lst, void *add)
+void			ft_realloc_tab(size_t size, t_lem_in *lst, void *add)
 {
 	t_lem_in		**tmp;
 	t_lem_in		**old;
@@ -95,23 +89,20 @@ void		ft_realloc_tab(size_t size, t_lem_in *lst, void *add)
 	lst->n_way = size;
 }
 
-void		ft_creat_way_lem_in(t_lem_in *ptr, char **tab, int i)
+void			ft_creat_way_lem_in(t_lem_in *ptr, char **tab, int i)
 {
-	char	**tmp;
+	char		**tmp;
 	t_lem_in	*lst1;
 	t_lem_in	*lst2;
 
-	while (tab[i] && (ft_strchr(tab[i], '-') || (tab[i][0] == '#' && tab[i][1] != '#')))
+	while (tab[i] && (ft_strchr(tab[i], '-') ||
+				(tab[i][0] == '#' && tab[i][1] != '#')))
 	{
 		if (tab[i][0] == '#' && tab[i][1] != '#')
 			++i;
 		else
 		{
 			tmp = ft_strsplit(tab[i], '-');
-			ft_putstr(tab[i]);
-			ft_putstr("\noklm1\n\n");
-			ft_putstr(tmp[0]);
-			ft_putstr("\noklm2\n\n");
 			if (!(lst1 = find_list(ptr, tmp[0])))
 				return ;
 			if (!(lst2 = find_list(ptr, tmp[1])))
