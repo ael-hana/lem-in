@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 00:38:31 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/02/09 05:47:37 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/02/10 03:35:22 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,9 +101,41 @@ void		ft_print_pos(t_lem_in *ptr, int remove)
 			ft_print_pos(ptr->way[i], remove);
 			if (!ptr->starttoend && ptr->n_hans)
 				ft_printf("L%d-%s ", ptr->n_hans, ptr->name);
-		//	if (!ft_strcmp(ptr->name, "3"))
-		//		ft_printf("name : %s, ptr : %p\n", ptr->way[i]->name, ptr->way[i]);
 		}
+		++i;
+	}
+}
+
+void		ft_print_posi2(t_lem_in *ptr)
+{
+	void	*save;
+	int		i;
+	int		len;
+
+	i = 1;
+	len = 1;
+	save = ptr;
+	while (len)
+	{
+		if (i == ptr->nw && !ptr->starttoend && ptr->n_hans)
+			len = ft_printf("L%d-%s ", ptr->n_hans, ptr->name);
+		ptr = ptr->next;
+		if (!ptr)
+		{
+			len = len != 1 ? 1 : 0;
+			++i;
+			ptr = save;
+		}
+	}
+	i = 0;
+	ptr = save;
+	while (ptr->starttoend != 2)
+		ptr = ptr->next;
+	while (ptr->old_val[i] != -42)
+	{
+		if (ptr->old_val[i])
+			ft_printf("L%d-%s ", ptr->old_val[i], ptr->name);
+		ptr->old_val[i] = 0;
 		++i;
 	}
 }
@@ -153,9 +185,11 @@ void		ft_select_branch(t_lem_in *ptr, t_lem_in **tab, t_lem_in *list)
 		{
 			i = ptr->n_way - 1;
 			ft_print_pos(ptr, ptr->n_hans);
+			//ft_print_posi2(osef);
 			write(1, "\n", 1);
 		}
 	}
+	//ft_print_posi2(osef);
 	ft_print_pos(ptr, ptr->n_hans);
 	write(1, "\n", 1);
 }
@@ -222,6 +256,5 @@ int		main(void)
 	ft_len_way(ptr);
 	ft_print_list_lem(save);
 	ft_path_finding(ptr, save);
-	dprintf(1, "lol");
 	return (0);
 }
