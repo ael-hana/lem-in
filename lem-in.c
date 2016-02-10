@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 00:38:31 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/02/10 06:05:27 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/02/10 06:17:11 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,60 +72,19 @@ void		ft_run_hans(t_lem_in *ptr, int num)
 	}
 }
 
-void		ft_print_pos(t_lem_in *ptr, int remove)
-{
-	int	i;
-
-	i = 0;
-	if (ptr->starttoend == 2)
-	{
-		while (ptr->old_val[i] != -42)
-		{
-			if (remove == ptr->old_val[i])
-			{
-				ft_printf("L%d-%s ", ptr->old_val[i], ptr->name);
-				ptr->old_val[i] = 0;
-			}
-			if (ptr->old_val[i])
-				ft_printf("L%d-%s ", ptr->old_val[i], ptr->name);
-			if (remove != ptr->old_val[i])
-				ptr->old_val[i] = 0;
-			++i;
-		}
-		return ;
-	}
-	while (ptr->n_way > i)
-	{
-		if (ptr->way[i]->nw == (ptr->nw + 1) || ptr->way[i]->starttoend == 2)
-		{
-			ft_print_pos(ptr->way[i], remove);
-			if (!ptr->starttoend && ptr->n_hans)
-				ft_printf("L%d-%s ", ptr->n_hans, ptr->name);
-		}
-		++i;
-	}
-}
-
-void		ft_print_posi2(t_lem_in *ptr)
+int			ft_print_posi2(t_lem_in *ptr)
 {
 	void	*save;
 	int		i;
 	int		len;
 
-	i = 1;
-	len = 1;
 	save = ptr;
-	while (len)
+	len = 0;
+	while (ptr)
 	{
-		if (/*i == ptr->nw && */!ptr->starttoend && ptr->n_hans)
+		if (!ptr->starttoend && ptr->n_hans)
 			len = ft_printf("L%d-%s ", ptr->n_hans, ptr->name);
 		ptr = ptr->next;
-		if (!ptr)
-		{
-			len = len != 1 ? 1 : 0;
-			++i;
-			ptr = save;
-		}
 	}
 	i = 0;
 	ptr = save;
@@ -134,10 +93,11 @@ void		ft_print_posi2(t_lem_in *ptr)
 	while (ptr->old_val[i] != -42)
 	{
 		if (ptr->old_val[i])
-			ft_printf("L%d-%s ", ptr->old_val[i], ptr->name);
+			len = ft_printf("L%d-%s ", ptr->old_val[i], ptr->name);
 		ptr->old_val[i] = 0;
 		++i;
 	}
+	return (len);
 }
 
 short		ft_search_val(int *tab, int s, t_lem_in *ptr)
@@ -184,13 +144,11 @@ void		ft_select_branch(t_lem_in *ptr, t_lem_in **tab, t_lem_in *list)
 		if (--i < 0)
 		{
 			i = ptr->n_way - 1;
-			ft_print_pos(ptr, ptr->n_hans);
-			//ft_print_posi2(osef);
+			ft_print_posi2(osef);
 			write(1, "\n", 1);
 		}
 	}
-	//ft_print_posi2(osef);
-	ft_print_pos(ptr, ptr->n_hans);
+	if (ft_print_posi2(osef))
 	write(1, "\n", 1);
 }
 
@@ -252,7 +210,6 @@ int		main(void)
 	while (ptr->starttoend != 1)
 		ptr = ptr->next;
 	ft_backtrack(ptr);
-	//ft_path_finding(save, NULL, 0);
 	ft_len_way(ptr);
 	ft_print_list_lem(save);
 	ft_path_finding(ptr, save);
