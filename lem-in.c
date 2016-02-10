@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 00:38:31 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/02/10 03:35:22 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/02/10 06:05:27 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ void		ft_print_posi2(t_lem_in *ptr)
 	save = ptr;
 	while (len)
 	{
-		if (i == ptr->nw && !ptr->starttoend && ptr->n_hans)
+		if (/*i == ptr->nw && */!ptr->starttoend && ptr->n_hans)
 			len = ft_printf("L%d-%s ", ptr->n_hans, ptr->name);
 		ptr = ptr->next;
 		if (!ptr)
