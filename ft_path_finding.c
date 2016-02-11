@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/03 22:58:47 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/02/10 08:15:47 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/02/11 03:26:50 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int		ft_size_to_end(t_lem_in *ptr)
 	int			i;
 
 	i = 0;
+	if (ptr->starttoend == 2)
+		return (1);
 	while (42)
 	{
 		tmp = ptr->way[i++];

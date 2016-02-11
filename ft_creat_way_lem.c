@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 18:57:15 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/02/10 10:09:40 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/02/11 03:17:08 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ t_lem_in		*find_list(t_lem_in *ptr, char *name)
 {
 	while (ptr && ft_strcmp(ptr->name, name))
 		ptr = ptr->next;
+	if (!ptr)
+		ft_error_lem_in();
 	return (ptr);
 }
 

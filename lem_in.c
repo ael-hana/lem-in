@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 00:38:31 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/02/10 10:09:51 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/02/11 03:13:02 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,10 @@ int				main(void)
 	tmp = tab;
 	tab = tmp;
 	i = 0;
-	while (!ft_strchr(tab[i], '-'))
+	while (tab[i] && !ft_strchr(tab[i], '-'))
 		i++;
+	if (!tab[i])
+		ft_error_lem_in();
 	ft_creat_way_lem_in(ptr, tab, i);
 	save = ptr;
 	while (ptr->starttoend != 1)
@@ -83,5 +85,6 @@ int				main(void)
 	ft_backtrack(ptr);
 	ft_len_way(ptr);
 	ft_path_finding(ptr, save);
+	ft_putstr("***********************");
 	return (0);
 }
