@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 00:38:31 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/02/11 03:13:02 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/02/11 04:30:43 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,5 @@ int				main(void)
 	ft_backtrack(ptr);
 	ft_len_way(ptr);
 	ft_path_finding(ptr, save);
-	ft_putstr("***********************");
 	return (0);
 }
