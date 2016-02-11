@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 08:24:46 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/02/11 08:00:21 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/02/11 08:05:02 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,17 +111,16 @@ void		ft_select_branch(t_lem_in *ptr, t_lem_in **tab, t_lem_in *list)
 	ft_print_posi2(osef) ? write(1, "\n", 1) : 0;
 }
 
-void		ft_path_finding(t_lem_in *ptr, t_lem_in *save)
+void		ft_path_finding(t_lem_in *ptr, t_lem_in *save, int i)
 {
-	int			i;
 	int			ix;
 	t_lem_in	*tab_sort[ptr->n_way + 1];
 
-	i = 0;
 	ix = 0;
 	while (ptr->n_way > i)
 	{
-		if ((ptr->way[i]->vld && !ptr->way[i]->starttoend) || ptr->way[i]->starttoend == 2)
+		if ((ptr->way[i]->vld && !ptr->way[i]->starttoend) ||
+				ptr->way[i]->starttoend == 2)
 			tab_sort[i - ix] = ptr->way[i];
 		else
 			++ix;

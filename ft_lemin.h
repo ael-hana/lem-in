@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 08:10:30 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/02/10 09:22:28 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/02/11 08:05:03 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_lem_in			*ft_creat_map_lem(char **tab, char **name);
 char				ft_backtrack(t_lem_in *ptr);
 void				ft_len_way(t_lem_in *ptr);
 int					ft_return_digit(char *str);
-void				ft_path_finding(t_lem_in *ptr, t_lem_in *save);
+void				ft_path_finding(t_lem_in *ptr, t_lem_in *save, int i);
 char				ft_swap(t_lem_in **tab_sort, int i);
 void				*ft_init_tab_end(t_lem_in *ptr, t_lem_in *start);
 #endif

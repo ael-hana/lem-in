@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 00:38:31 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/02/11 08:00:22 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/02/11 08:50:50 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,28 @@ char			**ft_read_stdin(void)
 	return (NULL);
 }
 
-int				main(void)
+void			ft_color(int ac, char *tab)
+{
+	static int	ok = 0;
+
+	if (ac && !ok)
+	{
+		if (ft_strstr(tab, "v"))
+			ok = ft_printf("\033[35m");
+		else if (ft_strstr(tab, "b"))
+			ok = ft_printf("\033[34m");
+		else if (ft_strstr(tab, "y"))
+			ok = ft_printf("\033[33m");
+		else if (ft_strstr(tab, "g"))
+			ok = ft_printf("\033[32m");
+		else if (ft_strstr(tab, "s"))
+			ok = ft_printf("\033[42m");
+	}
+	else if (ac && ok)
+		ft_printf("\033[0m");
+}
+
+int				main(int ac, char **av)
 {
 	char		**tab;
 	t_lem_in	*ptr;
@@ -69,6 +90,7 @@ int				main(void)
 	char		**tmp;
 	int			i;
 
+	ft_color(ac, av[1]);
 	tab = ft_read_stdin();
 	ptr = ft_creat_map_lem(tab, ft_strsplit(check_buf(tab), '|'));
 	tmp = tab;
@@ -84,6 +106,6 @@ int				main(void)
 		ptr = ptr->next;
 	ft_backtrack(ptr);
 	ft_len_way(ptr);
-	ft_path_finding(ptr, save);
+	ft_path_finding(ptr, save, 0);
 	return (0);
 }
