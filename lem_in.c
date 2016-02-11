@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 00:38:31 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/02/11 08:50:50 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/02/11 09:05:24 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,24 +61,24 @@ char			**ft_read_stdin(void)
 	return (NULL);
 }
 
-void			ft_color(int ac, char *tab)
+void			ft_color(int ac, char **tab)
 {
 	static int	ok = 0;
 
-	if (ac && !ok)
+	if (ac > 1 && !ok)
 	{
-		if (ft_strstr(tab, "v"))
+		if (ft_strstr(tab[1], "v"))
 			ok = ft_printf("\033[35m");
-		else if (ft_strstr(tab, "b"))
+		else if (ft_strstr(tab[1], "b"))
 			ok = ft_printf("\033[34m");
-		else if (ft_strstr(tab, "y"))
+		else if (ft_strstr(tab[1], "y"))
 			ok = ft_printf("\033[33m");
-		else if (ft_strstr(tab, "g"))
+		else if (ft_strstr(tab[1], "g"))
 			ok = ft_printf("\033[32m");
-		else if (ft_strstr(tab, "s"))
+		else if (ft_strstr(tab[1], "s"))
 			ok = ft_printf("\033[42m");
 	}
-	else if (ac && ok)
+	else if (ac > 1 && ok)
 		ft_printf("\033[0m");
 }
 
@@ -90,7 +90,7 @@ int				main(int ac, char **av)
 	char		**tmp;
 	int			i;
 
-	ft_color(ac, av[1]);
+	ft_color(ac, av);
 	tab = ft_read_stdin();
 	ptr = ft_creat_map_lem(tab, ft_strsplit(check_buf(tab), '|'));
 	tmp = tab;
