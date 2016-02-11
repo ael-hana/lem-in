@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 08:24:46 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/02/11 04:13:52 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/02/11 08:00:21 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int			ft_print_posi2(t_lem_in *ptr)
 	return (len);
 }
 
-short		ft_search_val(int *tab, int s, t_lem_in *ptr)
+short		ft_sh_val(int *tab, int s, t_lem_in *ptr)
 {
 	unsigned int	i;
 	short			ok;
@@ -95,12 +95,10 @@ void		ft_select_branch(t_lem_in *ptr, t_lem_in **tab, t_lem_in *list)
 	oklm = 1;
 	i = ptr->n_way - 1;
 	ptr->way = tab;
-	while (ft_search_val(list->old_val, ptr->n_hans, osef) || oklm <= ptr->n_hans)
+	while (ft_sh_val(list->old_val, ptr->n_hans, osef) || oklm <= ptr->n_hans)
 	{
 		if ((tab[i]->vld <= (ptr->nw - oklm) || i == 0) && oklm <= ptr->n_hans)
-		{
 			ft_run_hans(tab[i], oklm++);
-		}
 		else
 			ft_run_hans(tab[i], 0);
 		if (--i < 0)
@@ -123,8 +121,7 @@ void		ft_path_finding(t_lem_in *ptr, t_lem_in *save)
 	ix = 0;
 	while (ptr->n_way > i)
 	{
-		if ((ptr->way[i]->vld && !ptr->way[i]->starttoend) ||
-				ptr->way[i]->starttoend == 2)
+		if ((ptr->way[i]->vld && !ptr->way[i]->starttoend) || ptr->way[i]->starttoend == 2)
 			tab_sort[i - ix] = ptr->way[i];
 		else
 			++ix;

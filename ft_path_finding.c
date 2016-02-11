@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/03 22:58:47 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/02/11 05:10:53 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/02/11 08:00:19 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ char	ft_backtrack(t_lem_in *ptr)
 			ptr->nw = 0;
 	}
 	i = 0;
-	while (ptr->starttoend == 1 && !ptr->way[i]->nw)
+	while (ptr->starttoend == 1 && i < ptr->n_way && !ptr->way[i]->nw)
 		++i;
-	if (!ptr->way[i]->nw)
+	if (i == ptr->n_way)
 		ft_error_lem_in();
 	return (ok);
 }

@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 18:57:15 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/02/11 03:17:08 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/02/11 08:00:21 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_lem_in		*ft_creat_map_lem(char **tab, char **name)
 	i = 0;
 	ptr = NULL;
 	osef = 0;
-	while (tab[i][0] == '#' && tab[i][1] != '#')
+	while (tab[i][0] == '#')
 		++i;
 	nb_handes = ft_return_digit(tab[i++]);
 	while (tab[i] && name[osef])
@@ -63,7 +63,7 @@ t_lem_in		*find_list(t_lem_in *ptr, char *name)
 	while (ptr && ft_strcmp(ptr->name, name))
 		ptr = ptr->next;
 	if (!ptr)
-		ft_error_lem_in();
+		return (NULL);
 	return (ptr);
 }
 
