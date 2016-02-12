@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 00:38:47 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/02/12 04:41:28 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/02/12 05:15:11 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,13 @@ void		ft_error_lem_in(void)
 {
 	ft_printf("ERROR");
 	exit(EXIT_FAILURE);
+}
+
+void		ft_print_tab(char **tab)
+{
+	while (*tab)
+		ft_putendl(*tab++);
+	ft_putchar('\n');
 }
 
 char		*ft_check_line(char *str)
