@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 00:38:31 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/02/11 09:05:24 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/02/12 04:34:12 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,16 @@ char			**ft_read_stdin(void)
 
 	if (!(new = ft_strdup("\0")))
 		ft_error_lem_in();
-	if (!(str = malloc(sizeof(char) * 11)))
+	if (!(str = ft_memalloc(11)))
 		ft_error_lem_in();
 	while ((len = read(0, str, 10)) != -1)
 	{
 		if (!len)
+		{
+			if (!*new)
+				ft_error_lem_in();
 			return (ft_strsplit(new, '\n'));
+		}
 		str[len] = '\0';
 		tmp = new;
 		new = ft_strjoin(new, str);
@@ -91,7 +95,8 @@ int				main(int ac, char **av)
 	int			i;
 
 	ft_color(ac, av);
-	tab = ft_read_stdin();
+	if (!(tab = ft_read_stdin()))
+		ft_error_lem_in();
 	ptr = ft_creat_map_lem(tab, ft_strsplit(check_buf(tab), '|'));
 	tmp = tab;
 	tab = tmp;
@@ -107,5 +112,6 @@ int				main(int ac, char **av)
 	ft_backtrack(ptr);
 	ft_len_way(ptr);
 	ft_path_finding(ptr, save, 0);
+	ft_color(ac, av);
 	return (0);
 }
