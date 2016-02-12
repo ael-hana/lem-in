@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 00:38:47 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/02/12 06:00:07 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/02/12 08:22:20 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void		ft_error_lem_in(void)
 {
 	ft_printf("ERROR");
-	exit(EXIT_FAILURE);
+	//exit(EXIT_FAILURE);
 }
 
 void		ft_print_tab(char **tab)
@@ -45,7 +45,7 @@ char		*ft_check_line(char *str)
 	i = 0;
 	while (tab[2][i] && ft_isdigit(tab[2][i]))
 		++i;
-	if (tab[2][i])
+	if (tab[2][i] && tab[2][i] != 13)
 		ft_error_lem_in();
 	return (ft_strjoin(tab[0], "|"));
 }
@@ -64,22 +64,19 @@ void		*check_buf(char **tab)
 	while (tab[i][0] == '#')
 		++i;
 	++i;
-	ft_printf("i : %d, %s", i, tab[i]);
 	start = 0;
 	end = 0;
 	while (tab[i])
 	{
-		if (!ft_strcmp("##start", tab[i]))
+		if (ft_strstr(tab[i], "##start"))
 			++start;
-		else if (!ft_strcmp("##end", tab[i]))
+		else if (ft_strstr(tab[i], "##end"))
 			++end;
 		else if (tab[i][0] != '#' && !ft_strchr(tab[i], '-'))
-		{
-			ft_printf("i : %d, %s", i, tab[i]);
 			ret = ft_strjoin(ret, ft_check_line(tab[i]));
-		}
 		i++;
 	}
+	ft_printf("\n\n********       %d      %d   **********************************************\n\n\n", start, end);
 	if (!(end == 1 && start == 1))
 		ft_error_lem_in();
 	return (ret);

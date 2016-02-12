@@ -1,0 +1,6 @@
+30
+##start
+start 0 2
+##end
+ok 0 2
+start-ok
