@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 00:38:31 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/02/12 05:15:10 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/02/12 06:02:40 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,11 +95,12 @@ int				main(int ac, char **av)
 	int			i;
 
 	ft_color(ac, av);
+	write(2, "******************************************************************************", 42);
 	if (!(tab = ft_read_stdin()))
 		ft_error_lem_in();
 	ptr = ft_creat_map_lem(tab, ft_strsplit(check_buf(tab), '|'));
-	ft_print_tab(tmp = tab);
-	tab = tmp;
+	ft_print_tab(tab);
+	tmp = tab;
 	i = 0;
 	while (tab[i] && !ft_strchr(tab[i], '-'))
 		i++;

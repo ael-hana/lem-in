@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 00:38:47 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/02/12 05:15:11 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/02/12 06:00:07 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void		*check_buf(char **tab)
 	while (tab[i][0] == '#')
 		++i;
 	++i;
+	ft_printf("i : %d, %s", i, tab[i]);
 	start = 0;
 	end = 0;
 	while (tab[i])
@@ -73,7 +74,10 @@ void		*check_buf(char **tab)
 		else if (!ft_strcmp("##end", tab[i]))
 			++end;
 		else if (tab[i][0] != '#' && !ft_strchr(tab[i], '-'))
+		{
+			ft_printf("i : %d, %s", i, tab[i]);
 			ret = ft_strjoin(ret, ft_check_line(tab[i]));
+		}
 		i++;
 	}
 	if (!(end == 1 && start == 1))
