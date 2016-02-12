@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 00:38:47 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/02/12 08:22:20 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/02/12 11:49:17 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void		ft_error_lem_in(void)
 {
 	ft_printf("ERROR");
-	//exit(EXIT_FAILURE);
+	exit(EXIT_FAILURE);
 }
 
 void		ft_print_tab(char **tab)
@@ -68,15 +68,16 @@ void		*check_buf(char **tab)
 	end = 0;
 	while (tab[i])
 	{
-		if (ft_strstr(tab[i], "##start"))
+		if (tab[i][ft_strlen(tab[i]) - 1] == 13)
+			tab[i][ft_strlen(tab[i]) - 1] = '\0';
+		if (!ft_strcmp(tab[i], "##start"))
 			++start;
-		else if (ft_strstr(tab[i], "##end"))
+		else if (!ft_strcmp(tab[i], "##end"))
 			++end;
 		else if (tab[i][0] != '#' && !ft_strchr(tab[i], '-'))
 			ret = ft_strjoin(ret, ft_check_line(tab[i]));
 		i++;
 	}
-	ft_printf("\n\n********       %d      %d   **********************************************\n\n\n", start, end);
 	if (!(end == 1 && start == 1))
 		ft_error_lem_in();
 	return (ret);
@@ -89,7 +90,7 @@ int			ft_return_digit(char *str)
 	i = 0;
 	while (str[i] && ft_isdigit(str[i]))
 		++i;
-	if (str[i])
+	if (str[i] && str[i] != 13)
 		ft_error_lem_in();
 	if ((i = ft_atoi(str)))
 		return (i);

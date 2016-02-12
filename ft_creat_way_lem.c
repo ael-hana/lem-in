@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 18:57:15 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/02/11 08:00:21 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/02/12 11:59:02 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,12 @@ t_lem_in		*ft_creat_map_lem(char **tab, char **name)
 	nb_handes = ft_return_digit(tab[i++]);
 	while (tab[i] && name[osef])
 	{
-		while (tab[i][0] == '#' && tab[i][1] != '#')
+		while (tab[i][0] == '#' && ft_strcmp(tab[i], "##start") &&
+				ft_strcmp(tab[i], "##end"))
 			++i;
-		if (!ft_strcmp("##start", tab[i]) && ++i)
+		if (!ft_strcmp(tab[i], "##start") && ++i)
 			ptr = ft_init_t_lem_in(name[osef], ptr, 1, nb_handes);
-		else if (!ft_strcmp("##end", tab[i]) && ++i)
+		else if (!ft_strcmp(tab[i], "##end") && ++i)
 			ptr = ft_init_t_lem_in(name[osef], ptr, 2, 0);
 		else
 			ptr = ft_init_t_lem_in(name[osef], ptr, 0, 0);
@@ -60,6 +61,10 @@ t_lem_in		*ft_creat_map_lem(char **tab, char **name)
 
 t_lem_in		*find_list(t_lem_in *ptr, char *name)
 {
+	if (ptr->name[ft_strlen(ptr->name) - 1] == 13)
+		ptr->name[ft_strlen(ptr->name) - 1] = '\0';
+	if (name[ft_strlen(name) - 1] == 13)
+		name[ft_strlen(name) - 1] = '\0';
 	while (ptr && ft_strcmp(ptr->name, name))
 		ptr = ptr->next;
 	if (!ptr)
@@ -98,9 +103,9 @@ void			ft_creat_way_lem_in(t_lem_in *ptr, char **tab, int i)
 	t_lem_in	*lst2;
 
 	while (tab[i] && (ft_strchr(tab[i], '-') ||
-				(tab[i][0] == '#' && tab[i][1] != '#')))
+				(tab[i][0] == '#')))
 	{
-		if (tab[i][0] == '#' && tab[i][1] != '#')
+		if (tab[i][0] == '#')
 			++i;
 		else
 		{
