@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 18:57:15 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/02/12 11:59:02 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/02/15 23:16:10 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,13 @@ t_lem_in		*ft_init_t_lem_in(char *name, void *next, short std, int hans)
 	return (ptr);
 }
 
+int				ft_pass_diz(char **tab, int i)
+{
+	while (*tab[i] == '#')
+		++i;
+	return (i);
+}
+
 t_lem_in		*ft_creat_map_lem(char **tab, char **name)
 {
 	int			i;
@@ -47,9 +54,9 @@ t_lem_in		*ft_creat_map_lem(char **tab, char **name)
 		while (tab[i][0] == '#' && ft_strcmp(tab[i], "##start") &&
 				ft_strcmp(tab[i], "##end"))
 			++i;
-		if (!ft_strcmp(tab[i], "##start") && ++i)
+		if (!ft_strcmp(tab[i], "##start") && (i = ft_pass_diz(tab, i)))
 			ptr = ft_init_t_lem_in(name[osef], ptr, 1, nb_handes);
-		else if (!ft_strcmp(tab[i], "##end") && ++i)
+		else if (!ft_strcmp(tab[i], "##end") && (i = ft_pass_diz(tab, i)))
 			ptr = ft_init_t_lem_in(name[osef], ptr, 2, 0);
 		else
 			ptr = ft_init_t_lem_in(name[osef], ptr, 0, 0);

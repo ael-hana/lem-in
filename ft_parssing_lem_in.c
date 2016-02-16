@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 00:38:47 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/02/12 11:49:17 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/02/15 23:02:37 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,6 @@ void		*check_buf(char **tab)
 	end = 0;
 	while (tab[i])
 	{
-		if (tab[i][ft_strlen(tab[i]) - 1] == 13)
-			tab[i][ft_strlen(tab[i]) - 1] = '\0';
 		if (!ft_strcmp(tab[i], "##start"))
 			++start;
 		else if (!ft_strcmp(tab[i], "##end"))
