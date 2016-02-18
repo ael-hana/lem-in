@@ -1,6 +1,6 @@
--10
+10
 ##start
 start 0 2
 ##end
-ok 0 2
-start-ok
+start 0 2
+start-start

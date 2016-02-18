@@ -91,7 +91,6 @@ int				main(int ac, char **av)
 	char		**tab;
 	t_lem_in	*ptr;
 	void		*save;
-	char		**tmp;
 	int			i;
 
 	ft_color(ac, av);
@@ -103,7 +102,6 @@ int				main(int ac, char **av)
 			tab[i][ft_strlen(tab[i]) - 1] = '\0';
 	ptr = ft_creat_map_lem(tab, ft_strsplit(check_buf(tab), '|'));
 	ft_print_tab(tab);
-	tmp = tab;
 	i = 0;
 	while (tab[i] && !ft_strchr(tab[i], '-'))
 		i++;

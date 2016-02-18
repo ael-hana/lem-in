@@ -43,6 +43,7 @@ t_lem_in		*ft_creat_map_lem(char **tab, char **name)
 	int			osef;
 	int			nb_handes;
 
+	ft_check_d(name);
 	i = 0;
 	ptr = NULL;
 	osef = 0;

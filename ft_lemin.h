@@ -41,4 +41,5 @@ void				ft_path_finding(t_lem_in *ptr, t_lem_in *save, int i);
 char				ft_swap(t_lem_in **tab_sort, int i);
 void				*ft_init_tab_end(t_lem_in *ptr, t_lem_in *start);
 void				ft_print_tab(char **tab);
+void				ft_check_d(char **tab);
 #endif

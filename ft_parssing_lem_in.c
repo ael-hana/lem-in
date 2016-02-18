@@ -50,11 +50,36 @@ char		*ft_check_line(char *str)
 	return (ft_strjoin(tab[0], "|"));
 }
 
+void		ft_ch_str(char **tab, char *str)
+{
+	int	i;
+	int	len;
+
+	i = 0;
+	len = 0;
+	while (tab[i])
+	{
+		if (!ft_strcmp(tab[i], str))
+			++len;
+		++i;
+	}
+	if (len != 1)
+		ft_error_lem_in();
+}
+
+void	 ft_check_d(char **tab)
+{
+	int	i;
+
+	i = 0;
+	while (tab[i])
+		ft_ch_str(tab, tab[i++]);	
+}
+
 void		*check_buf(char **tab)
 {
 	int		i;
 	int		start;
-	int		end;
 	char	*ret;
 
 	ret = "\0";
@@ -65,18 +90,17 @@ void		*check_buf(char **tab)
 		++i;
 	++i;
 	start = 0;
-	end = 0;
 	while (tab[i])
 	{
 		if (!ft_strcmp(tab[i], "##start"))
 			++start;
 		else if (!ft_strcmp(tab[i], "##end"))
-			++end;
-		else if (tab[i][0] != '#' && !ft_strchr(tab[i], '-'))
+			--start;
+		else if (*tab[i] != '#' && !ft_strchr(tab[i], '-'))
 			ret = ft_strjoin(ret, ft_check_line(tab[i]));
 		i++;
 	}
-	if (!(end == 1 && start == 1))
+	if (start)
 		ft_error_lem_in();
 	return (ret);
 }
