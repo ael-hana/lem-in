@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 00:38:47 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/02/15 23:02:37 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/02/25 15:58:08 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,32 +48,6 @@ char		*ft_check_line(char *str)
 	if (tab[2][i] && tab[2][i] != 13)
 		ft_error_lem_in();
 	return (ft_strjoin(tab[0], "|"));
-}
-
-void		ft_ch_str(char **tab, char *str)
-{
-	int	i;
-	int	len;
-
-	i = 0;
-	len = 0;
-	while (tab[i])
-	{
-		if (!ft_strcmp(tab[i], str))
-			++len;
-		++i;
-	}
-	if (len != 1)
-		ft_error_lem_in();
-}
-
-void	 ft_check_d(char **tab)
-{
-	int	i;
-
-	i = 0;
-	while (tab[i])
-		ft_ch_str(tab, tab[i++]);	
 }
 
 void		*check_buf(char **tab)

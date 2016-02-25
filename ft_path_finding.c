@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/03 22:58:47 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/02/16 02:01:00 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/02/25 16:06:00 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,13 @@ void	ft_len_way(t_lem_in *ptr)
 		tmp = ptr->way[i++];
 		tmp->vld = ft_size_to_end(tmp);
 	}
+}
+
+void	ft_check_d(char **tab)
+{
+	int	i;
+
+	i = 0;
+	while (tab[i])
+		ft_ch_str(tab, tab[i++]);
 }

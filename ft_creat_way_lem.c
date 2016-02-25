@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 18:57:15 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/02/15 23:16:10 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/02/25 16:05:59 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,9 @@ t_lem_in		*ft_creat_map_lem(char **tab, char **name)
 	int			nb_handes;
 
 	ft_check_d(name);
-	i = 0;
 	ptr = NULL;
 	osef = 0;
-	while (tab[i][0] == '#')
-		++i;
+	i = ft_pass_diz(tab, 0);
 	nb_handes = ft_return_digit(tab[i++]);
 	while (tab[i] && name[osef])
 	{
@@ -78,30 +76,6 @@ t_lem_in		*find_list(t_lem_in *ptr, char *name)
 	if (!ptr)
 		return (NULL);
 	return (ptr);
-}
-
-void			ft_realloc_tab(size_t size, t_lem_in *lst, void *add)
-{
-	t_lem_in		**tmp;
-	t_lem_in		**old;
-	unsigned int	i;
-
-	old = lst->way;
-	if (!(tmp = malloc(sizeof(t_lem_in) * (size + 1))))
-		ft_error_lem_in();
-	i = 0;
-	while (i < (size - 1))
-	{
-		tmp[i] = old[i];
-		if (tmp[i++] == add)
-			return ;
-	}
-	tmp[i] = add;
-	tmp[++i] = NULL;
-	if (old)
-		free(old);
-	lst->way = tmp;
-	lst->n_way = size;
 }
 
 void			ft_creat_way_lem_in(t_lem_in *ptr, char **tab, int i)

@@ -1,6 +1,0 @@
-10
-##start
-start 0 2
-##end
-start 0 2
-start-start
