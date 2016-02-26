@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/25 15:49:02 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/02/25 16:07:05 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/02/26 02:58:35 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,19 @@ void			ft_overwrite_tab_ret(char **tab)
 	while (tab[++i])
 		if (tab[i][ft_strlen(tab[i]) - 1] == 13)
 			tab[i][ft_strlen(tab[i]) - 1] = '\0';
+	ft_len_nl(tab);
+}
+
+void			ft_len_nl(char **tab)
+{
+	int			i;
+
+	i = 0;
+	ft_print_tab(tab);
+	while (tab[i])
+	{
+		if (*tab[i] == '\n')
+			ft_error_lem_in();
+		++i;
+	}
 }
