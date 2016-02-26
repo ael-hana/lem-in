@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/10 08:10:30 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/02/26 02:41:56 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/02/26 03:15:32 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,5 @@ void				ft_check_d(char **tab);
 void				ft_ch_str(char **tab, char *str);
 void				ft_overwrite_tab_ret(char **tab);
 void				ft_realloc_tab(size_t size, t_lem_in *lst, void *add);
-void				ft_len_nl(char **tab);
+void				ft_len_nl(char *tab);
 #endif

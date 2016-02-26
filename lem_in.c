@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 00:38:31 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/02/26 02:58:37 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/02/26 03:15:31 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ char			**ft_read_stdin(void)
 
 	if (!(new = ft_strdup("\0")))
 		ft_error_lem_in();
-	if (!(str = ft_memalloc(11)))
+	if (!(str = ft_memalloc(2)))
 		ft_error_lem_in();
-	while ((len = read(0, str, 10)) != -1)
+	while ((len = read(0, str, 1)) != -1)
 	{
 		if (!len)
 		{
@@ -57,6 +57,7 @@ char			**ft_read_stdin(void)
 			return (ft_strsplit(new, '\n'));
 		}
 		str[len] = '\0';
+		ft_len_nl(str);
 		tmp = new;
 		new = ft_strjoin(new, str);
 		free(tmp);
