@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 00:38:47 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/02/25 15:58:08 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/02/26 02:07:34 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,19 +63,19 @@ void		*check_buf(char **tab)
 	while (tab[i][0] == '#')
 		++i;
 	++i;
-	start = 0;
+	start = -2;
 	while (tab[i])
 	{
 		if (!ft_strcmp(tab[i], "##start"))
 			++start;
 		else if (!ft_strcmp(tab[i], "##end"))
-			--start;
+			++start;
 		else if (*tab[i] != '#' && !ft_strchr(tab[i], '-'))
 			ret = ft_strjoin(ret, ft_check_line(tab[i]));
+		*tab[i] == 'L' ? ft_error_lem_in() : 0;
 		i++;
 	}
-	if (start)
-		ft_error_lem_in();
+	start ? ft_error_lem_in() : NULL;
 	return (ret);
 }
 

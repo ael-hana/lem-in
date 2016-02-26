@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 00:38:31 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/02/25 16:06:00 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/02/26 01:55:08 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,10 +96,9 @@ int				main(int ac, char **av)
 	ft_color(ac, av);
 	if (!(tab = ft_read_stdin()))
 		ft_error_lem_in();
-	i = -1;
 	ft_overwrite_tab_ret(tab);
-	ptr = ft_creat_map_lem(tab, ft_strsplit(check_buf(tab), '|'));
-	ft_print_tab(tab);
+	if (!(ptr = ft_creat_map_lem(tab, ft_strsplit(check_buf(tab), '|'))))
+		ft_error_lem_in();
 	i = 0;
 	while (tab[i] && !ft_strchr(tab[i], '-'))
 		i++;
@@ -109,6 +108,7 @@ int				main(int ac, char **av)
 	while (ptr->starttoend != 1)
 		ptr = ptr->next;
 	ft_backtrack(ptr);
+	ft_print_tab(tab);
 	ft_len_way(ptr);
 	ft_path_finding(ptr, save, 0);
 	ft_color(ac, av);
