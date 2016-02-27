@@ -106,9 +106,9 @@ int				main(int ac, char **av)
 	!tab[i] ? ft_error_lem_in() : 0;
 	ft_creat_way_lem_in(ptr, tab, i);
 	save = ptr;
-	while (ptr->starttoend != 1)
+	while (ptr->starttoend != 1 && ptr)
 		ptr = ptr->next;
-	ft_backtrack(ptr);
+	ft_backtrack(ptr) ? ft_error_lem_in() : 0;
 	ft_print_tab(tab);
 	ft_len_way(ptr);
 	ft_path_finding(ptr, save, 0);

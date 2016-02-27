@@ -14,7 +14,7 @@
 
 void		ft_error_lem_in(void)
 {
-	ft_printf("ERROR");
+	write(2, "ERROR", 5);
 	exit(EXIT_FAILURE);
 }
 
