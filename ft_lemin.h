@@ -46,4 +46,5 @@ void				ft_ch_str(char **tab, char *str);
 void				ft_overwrite_tab_ret(char **tab);
 void				ft_realloc_tab(size_t size, t_lem_in *lst, void *add);
 void				ft_len_nl(char *tab);
+int				ft_len_tab(char **tab);
 #endif

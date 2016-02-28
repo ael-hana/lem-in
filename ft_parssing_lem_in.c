@@ -58,11 +58,13 @@ void		*check_buf(char **tab)
 
 	ret = "\0";
 	i = 0;
+	
 	if (!tab || !*tab || !**tab)
 		ft_error_lem_in();
-	while (tab[i][0] == '#')
+	while (tab[i][0] == '#' && ft_len_tab(tab) <= i) 
 		++i;
 	++i;
+	ft_len_tab(tab) < i ? ft_error_lem_in() : 0;
 	start = -2;
 	while (tab[i])
 	{

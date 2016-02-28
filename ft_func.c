@@ -74,3 +74,13 @@ void			ft_len_nl(char *tab)
 	if (ok == 2)
 		ft_error_lem_in();
 }
+
+int			ft_len_tab(char **tab)
+{
+	int		i;
+
+	i = 0;
+	while (tab[i])
+		++i;
+	return (i);
+}
