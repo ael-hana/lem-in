@@ -90,6 +90,10 @@ int			ft_return_digit(char *str)
 		++i;
 	if (str[i] && str[i] != 13)
 		ft_error_lem_in();
+	ft_strlen(str) > ft_strlen("2147483648") ? ft_error_lem_in() : 0;
+	if (ft_strlen(str) == ft_strlen("2147483647")
+	&& ft_strcmp("2147483647", str) > 0)
+		ft_error_lem_in();
 	if ((i = ft_atoi(str)))
 		return (i);
 	ft_error_lem_in();
