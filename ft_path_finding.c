@@ -15,11 +15,10 @@
 char	ft_backtrack(t_lem_in *ptr)
 {
 	int			i;
-	char		ok;
+	static char		ok = 1;
 	t_lem_in	*tmp;
 
 	i = 0;
-	ok = 1;
 	while (ptr->n_way > i)
 	{
 		tmp = ptr->way[i++];
