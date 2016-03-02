@@ -110,6 +110,7 @@ int				main(int ac, char **av)
 		ptr = ptr->next;
 	ft_backtrack(ptr) ? ft_error_lem_in() : 0;
 	ft_print_tab(tab);
+	ft_printf("\n\n tu soule\n\n");
 	ft_len_way(ptr);
 	ft_path_finding(ptr, save, 0);
 	ft_color(ac, av);

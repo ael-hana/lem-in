@@ -43,12 +43,14 @@ char	ft_backtrack(t_lem_in *ptr)
 int		ft_size_to_end(t_lem_in *ptr)
 {
 	t_lem_in	*tmp;
+	int			v;
 	int			i;
 
 	i = 0;
+	v = 0;
 	if (ptr->starttoend == 2)
 		return (1);
-	while (42)
+	while (ptr->n_way > i)
 	{
 		tmp = ptr->way[i++];
 		if (tmp->starttoend == 1)
@@ -56,20 +58,37 @@ int		ft_size_to_end(t_lem_in *ptr)
 		else if (tmp->starttoend == 2)
 			return (1);
 		else if (tmp->nw - 1 == ptr->nw)
-			return (ft_size_to_end(tmp) + 1);
+		{
+			if ((v = ft_size_to_end(tmp)) > 0)
+				return (-1);
+			return (v + 1);
+		}
 	}
+	return (-1); 
 }
 
 void	ft_len_way(t_lem_in *ptr)
 {
 	int			i;
+	int			v;	
 	t_lem_in	*tmp;
 
 	i = 0;
 	while (ptr->n_way > i)
 	{
 		tmp = ptr->way[i++];
-		tmp->vld = ft_size_to_end(tmp);
+		ft_printf("\n\n 1 oklm : %p\n\n", tmp);
+		if ((v = ft_size_to_end(tmp)) > 0)
+			tmp->vld = v;
+		else
+		{
+			if (i - 1 < 0)
+				ptr->way[0] = ptr->way[1];
+			ptr->way[i - 1] = NULL;
+				
+			--ptr->n_way;
+		}
+		ft_printf("\n\n 2 oklm : %d\n\n", v);
 	}
 }
 
