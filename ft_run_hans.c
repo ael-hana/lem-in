@@ -119,8 +119,8 @@ void		ft_path_finding(t_lem_in *ptr, t_lem_in *save, int i)
 	ix = 0;
 	while (ptr->n_way > i)
 	{
-		if ((ptr->way[i]->vld && !ptr->way[i]->starttoend) ||
-				ptr->way[i]->starttoend == 2)
+		if ((ptr->way[i]->vld && ptr->way[i]->starttoend != 1) ||
+				ptr->way[i]->starttoend == 2 || ptr->n_way == 1)
 			tab_sort[i - ix] = ptr->way[i];
 		else
 			++ix;
