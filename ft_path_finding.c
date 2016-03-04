@@ -82,10 +82,12 @@ void	ft_len_way(t_lem_in *ptr)
 			tmp->vld = v;
 		else
 		{
-			if (i - 1 < 0)
-				ptr->way[0] = ptr->way[1];
-			ptr->way[i - 1] = NULL;
-				
+			v = i;
+			while (v - 1 < ptr->n_way)
+			{
+				ptr->way[v - 1] = ptr->way[v];
+				v++;
+			}
 			--ptr->n_way;
 		}
 		ft_printf("\n\n 2 oklm : %d\n\n", v);
