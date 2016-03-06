@@ -26,6 +26,7 @@ t_lem_in		*ft_init_t_lem_in(char *name, void *next, short std, int hans)
 	ptr->starttoend = std;
 	ptr->n_way = 0;
 	ptr->way = NULL;
+	ptr->old_val = NULL;
 	return (ptr);
 }
 

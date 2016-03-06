@@ -42,18 +42,17 @@ char			**ft_read_stdin(void)
 	char		*str;
 	char		*new;
 	char		*tmp;
+	static int		s = 0;
 	int			len;
 
-	if (!(new = ft_strdup("\0")))
-		ft_error_lem_in();
-	if (!(str = ft_memalloc(2)))
-		ft_error_lem_in();
-	while ((len = read(0, str, 1)) != -1)
+	new = ft_strdup("\0");
+	str = ft_memalloc(2);
+	!str || !new ? ft_error_lem_in() : 0;
+	while ((len = read(0, str, 1)) != -1 && ++s < 10000)
 	{
 		if (!len)
 		{
-			if (!*new)
-				ft_error_lem_in();
+			!*new ? ft_error_lem_in() : 0;
 			return (ft_strsplit(new, '\n'));
 		}
 		str[len] = '\0';
