@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/03 22:58:47 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/02/25 16:06:00 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/03/07 23:29:29 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 char	ft_backtrack(t_lem_in *ptr)
 {
-	int			i;
+	int				i;
 	static char		ok = 1;
-	t_lem_in	*tmp;
+	t_lem_in		*tmp;
 
 	i = 0;
 	while (ptr->n_way > i)
@@ -64,13 +64,13 @@ int		ft_size_to_end(t_lem_in *ptr)
 			return (v + 1);
 		}
 	}
-	return (-1); 
+	return (-1);
 }
 
 void	ft_len_way(t_lem_in *ptr)
 {
 	int			i;
-	int			v;	
+	int			v;
 	t_lem_in	*tmp;
 
 	i = 0;

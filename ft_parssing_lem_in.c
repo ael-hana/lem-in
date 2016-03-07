@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 00:38:47 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/02/26 02:58:38 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/03/07 23:32:52 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,11 @@ void		*check_buf(char **tab)
 
 	ret = "\0";
 	i = 0;
-	
-	if (!tab || !*tab || !**tab)
-		ft_error_lem_in();
-	while (tab[i][0] == '#' && ft_len_tab(tab) <= i) 
+	!tab || !*tab || !**tab ? ft_error_lem_in() : 0;
+	while (tab[i][0] == '#' && ft_len_tab(tab) <= i)
 		++i;
 	++i;
-	ft_len_tab(tab) < i ? ft_error_lem_in() : 0;
+	ft_len_tab(tab) < i ? ft_error_lem_in() : -2;
 	start = -2;
 	while (tab[i])
 	{

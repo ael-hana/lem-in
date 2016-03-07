@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/25 15:49:02 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/02/26 03:15:30 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/03/07 23:29:56 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void			ft_len_nl(char *tab)
 		ft_error_lem_in();
 }
 
-int			ft_len_tab(char **tab)
+int				ft_len_tab(char **tab)
 {
 	int		i;
 

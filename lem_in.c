@@ -6,7 +6,7 @@
 /*   By: ael-hana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 00:38:31 by ael-hana          #+#    #+#             */
-/*   Updated: 2016/02/26 03:15:31 by ael-hana         ###   ########.fr       */
+/*   Updated: 2016/03/07 23:33:38 by ael-hana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char			**ft_read_stdin(void)
 	char		*str;
 	char		*new;
 	char		*tmp;
-	static int		s = 0;
+	static int	s = 0;
 	int			len;
 
 	new = ft_strdup("\0");
